@@ -43,14 +43,6 @@ public class Constitution {
         return this.articles.get(articleNo - 1);
     }
 
-    public String writeSection(int secionNo){
-        return this.getSection(secionNo).toString();
-    }
-
-    public String writeArticle(int articleNo){
-        return this.getArticle(articleNo).toString();
-    }
-
     public String writeSections(int sectionStartNo, int sectionEndNo) throws IllegalArgumentException{
         if (sectionStartNo > sectionEndNo) {
             throw new IllegalArgumentException(
@@ -79,9 +71,10 @@ public class Constitution {
 
     @Override
     public String toString() {
-        return "Constitution{" +
-                "beforeSections='" + beforeSections + '\'' +
-                ", sections=" + sections +
-                '}';
+        String result = beforeSections + "\n" + "\n";
+        for(Section section : sections) {
+            result += section.toString();
+        }
+        return result + "\n";
     }
 }
