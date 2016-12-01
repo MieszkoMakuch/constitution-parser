@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
  * Created by mieszkomakuch on 01.12.2016.
  */
 public class ConstitutionParser {
+
     public static void main(String[] args) throws FileNotFoundException{
         File constitutionTxt = new File("/Users/mieszkomakuch/Documents/Informatyka IET/SEMESTR II/Programowanie obiektowe/Laboratoria/Lab8-konstytucja/konstytucja.txt");
 
@@ -16,18 +17,16 @@ public class ConstitutionParser {
         try {
             //System.out.println(constitution.writeArticle(11));
             //System.out.println(constitution.writeArticle(5));
-            //System.out.println(constitution.writeArticles(1,3));
+            System.out.println(constitution.writeArticles(1,203));
             //System.out.println(constitution.writeSection(3));
             //System.out.println(constitution.writeSections(1,3));
         } catch(IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.println(constitution.toString());
+        //System.out.println(constitution.toString());
 
 
     }
-
-
 
     public static Constitution parseConstitutionFromTxt (Scanner sc) {
         Constitution constitution = new Constitution();
@@ -71,7 +70,7 @@ public class ConstitutionParser {
                         break;
                     }
                 }
-                article.setContent(articleContentBuffer);
+                article.setContent(chceckArticleContentForUnnecessaryNewLine(articleContentBuffer));
                 section.addArticle(article);
                 constitution.addArticle(article);
                 articleNo++;
@@ -82,18 +81,19 @@ public class ConstitutionParser {
         return constitution;
     }
 
+    public static String chceckArticleContentForUnnecessaryNewLine (String articleContent) {
+        if (articleContent.startsWith("\n1. ")){
+            return articleContent.replaceAll("\n1. ", "1. ");
+        }
+        return articleContent;
+    }
+
     public static String checkLine(String line) {
         String deletedKancelariaAndData = deleteKancelariaAndData(line);
-
         //linking words, deleting end of line
         String line2 = deletedKancelariaAndData.replaceAll("-\n", "");
         String line3 = line2.replaceAll("\n", " ");
-
         return addNewLineBeforePoint(line3);
-        //delete "©Kancelaria Sejmu"
-        //String line4 = line3.replaceAll("©Kancelaria Sejmu", "");
-        //String line5 = line4.replaceAll("[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])","");
-        //String line6 = line5.replaceAll("([0-9]*[0-9][.])","   WYKRYTO NOWA LINIE   ");
     }
 
     public static String deleteKancelariaAndData (String line) {
@@ -107,7 +107,6 @@ public class ConstitutionParser {
             line = "\n" + line;
         }
         return line;
-                //line.replaceAll("([0-9]*[0-9][.])","\n");
     }
 
 }
