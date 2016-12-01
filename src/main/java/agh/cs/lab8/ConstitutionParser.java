@@ -10,21 +10,32 @@ import java.util.regex.Pattern;
 public class ConstitutionParser {
 
     public static void main(String[] args) throws FileNotFoundException{
-        File constitutionTxt = new File("/Users/mieszkomakuch/Documents/Informatyka IET/SEMESTR II/Programowanie obiektowe/Laboratoria/Lab8-konstytucja/konstytucja.txt");
+        //File constitutionTxt = new File("/Users/mieszkomakuch/Documents/Informatyka IET/SEMESTR II/Programowanie obiektowe/Laboratoria/Lab8-konstytucja/konstytucja.txt");
+
+        File constitutionTxt = new File(args[0]);
 
         Constitution constitution = parseConstitutionFromTxt(new Scanner(constitutionTxt));
 
+        Integer startNo, endNo;
+        startNo = endNo = Integer.parseInt(args[2]);
+        if (args.length > 3) {
+            endNo = Integer.parseInt(args[3]);
+        }
+
         try {
-            //System.out.println(constitution.writeArticle(11));
-            //System.out.println(constitution.writeArticle(5));
-            System.out.println(constitution.writeArticles(1,203));
-            //System.out.println(constitution.writeSection(3));
-            //System.out.println(constitution.writeSections(1,3));
+            if (args[1].equalsIgnoreCase("r") || args[1].equalsIgnoreCase("s")){
+                System.out.println(constitution.writeSections(startNo,endNo));
+            } else if (args[1].equalsIgnoreCase("a")){
+                System.out.println(constitution.writeArticles(startNo,endNo));
+            } else throw new IllegalArgumentException(  "Podano nieprawidłowe parametry, podaj je wg. schematu:" + "\n" +
+                    "ścieżkaDoPliku r numerRozdzialu lub" + "\n" +
+                    "ścieżkaDoPliku r poczatekZakresu koniecZakresu lub" + "\n" +
+                    "ścieżkaDoPliku a numerArtykułu lub" + "\n" +
+            "ścieżkaDoPliku a poczatekZakresu koniecZakresu ");
         } catch(IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
-        //System.out.println(constitution.toString());
-
+        System.out.println(constitution.toString());
 
     }
 
@@ -98,8 +109,7 @@ public class ConstitutionParser {
 
     public static String deleteKancelariaAndData (String line) {
         String line2 = line.replaceAll("©Kancelaria Sejmu\n", "");
-        String line3 = line2.replaceAll("[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])","");
-        return line3;
+        return line2.replaceAll("[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])","");
     }
 
     public static String addNewLineBeforePoint (String line) {
