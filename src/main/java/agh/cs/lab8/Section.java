@@ -31,12 +31,11 @@ public class Section {
 
     @Override
     public String toString() {
-        return "Section{" +
-                "no=" + no +
-                ", stringNo='" + stringNo + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", articles=" + articles +
-                '}';
+        String result = stringNo + "\n" +
+                        title + "\n";
+        for(Article article : articles) {
+            result += article.toString();
+        }
+        return result + "\n";
     }
 }
