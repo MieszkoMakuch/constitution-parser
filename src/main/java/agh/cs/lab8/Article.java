@@ -25,10 +25,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" +
-                "no=" + no +
-                ", stringNo='" + stringNo + '\'' +
-                ", content='" + content + '\'' +
-                '}';
+        return  stringNo + "\n" +
+                content + "\n";
     }
 }
