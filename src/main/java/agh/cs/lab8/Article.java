@@ -15,10 +15,6 @@ public class Article {
         this.no = no;
     }
 
-    public void setStringNo(String stringNo) {
-        this.stringNo = stringNo;
-    }
-
     public void setContent (String content){
         this.content = content;
     }
