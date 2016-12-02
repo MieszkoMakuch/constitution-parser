@@ -9,6 +9,17 @@ import static org.junit.Assert.*;
  */
 public class ConstitutionParserTest {
     @Test
+    public void chceckArticleContentForUnnecessaryNewLine() throws Exception {
+        String chceckArticleTest = "\n" +
+                "1. Władza zwierzchnia w Rzeczypospolitej Polskiej należy do Narodu. \n" +
+                "2. Naród sprawuje władzę przez swoich przedstawicieli lub bezpośrednio. \n";
+        String chceckArticleExpectedResult =
+                "1. Władza zwierzchnia w Rzeczypospolitej Polskiej należy do Narodu. \n" +
+                "2. Naród sprawuje władzę przez swoich przedstawicieli lub bezpośrednio. \n";
+        assertEquals(chceckArticleExpectedResult, ConstitutionParser.chceckArticleContentForUnnecessaryNewLine(chceckArticleTest));
+    }
+
+    @Test
     public void main() throws Exception {
 
     }
