@@ -5,9 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by mieszkomakuch on 01.12.2016.
+ * Created by mieszkomakuch on 02.12.2016.
  */
-public class ConstitutionParserTest {
+public class StringUtilsTest {
     @Test
     public void chceckArticleContentForUnnecessaryNewLine() throws Exception {
         String chceckArticleTest = "\n" +
@@ -15,38 +15,28 @@ public class ConstitutionParserTest {
                 "2. Naród sprawuje władzę przez swoich przedstawicieli lub bezpośrednio. \n";
         String chceckArticleExpectedResult =
                 "1. Władza zwierzchnia w Rzeczypospolitej Polskiej należy do Narodu. \n" +
-                "2. Naród sprawuje władzę przez swoich przedstawicieli lub bezpośrednio. \n";
-        assertEquals(chceckArticleExpectedResult, ConstitutionParser.chceckArticleContentForUnnecessaryNewLine(chceckArticleTest));
-    }
-
-    @Test
-    public void main() throws Exception {
-
-    }
-
-    @Test
-    public void parseConstitutionFromTxt() throws Exception {
-
+                        "2. Naród sprawuje władzę przez swoich przedstawicieli lub bezpośrednio. \n";
+        assertEquals(chceckArticleExpectedResult, StringUtils.chceckArticleContentForUnnecessaryNewLine(chceckArticleTest));
     }
 
     @Test
     public void checkLine() throws Exception {
         String linkingWordsTest =   "Rzeczpospolita Polska zapewnia wolność tworzenia i działania partii politycz-\n" +
-                                    "nych. Partie polityczne zrzeszają na zasadach dobrowolności i równości obywa-\n" +
-                                    "teli polskich w celu wpływania metodami demokratycznymi na kształtowanie\n" +
-                                    "polityki państwa.\n";
+                "nych. Partie polityczne zrzeszają na zasadach dobrowolności i równości obywa-\n" +
+                "teli polskich w celu wpływania metodami demokratycznymi na kształtowanie\n" +
+                "polityki państwa.\n";
         String linkingWordsExpectedResult = "Rzeczpospolita Polska zapewnia wolność tworzenia i działania partii " +
                 "politycznych. Partie polityczne zrzeszają na zasadach dobrowolności i równości obywateli polskich " +
                 "w celu wpływania metodami demokratycznymi na kształtowanie polityki państwa. ";
 
-        assertEquals(linkingWordsExpectedResult, ConstitutionParser.checkLine(linkingWordsTest));
+        assertEquals(linkingWordsExpectedResult, StringUtils.checkLine(linkingWordsTest));
 
 
         String deleteKancelariaTest =   "konywania zadań publicznych określa ustawa.\n" +
-                                        "©Kancelaria Sejmu\n" +
-                                        "2009-11-16";
+                "©Kancelaria Sejmu\n" +
+                "2009-11-16";
         String deleteKancelariaExpectedResult =     "konywania zadań publicznych określa ustawa. ";
-        assertEquals(deleteKancelariaExpectedResult, ConstitutionParser.checkLine(deleteKancelariaTest));
+        assertEquals(deleteKancelariaExpectedResult, StringUtils.checkLine(deleteKancelariaTest));
 
         String pointStartsFromNewLineText = "1. Rzeczpospolita Polska zapewnia wolność tworzenia i działania partii politycz-\n" +
                 "nych. Partie polityczne zrzeszają na zasadach dobrowolności i równości obywa-\n" +
@@ -55,7 +45,17 @@ public class ConstitutionParserTest {
         String pointStartsFromNewLineExpectedResult = "\n1. Rzeczpospolita Polska zapewnia wolność tworzenia " +
                 "i działania partii politycznych. Partie polityczne zrzeszają na zasadach dobrowolności " +
                 "i równości obywateli polskich w celu wpływania metodami demokratycznymi na kształtowanie ";
-        assertEquals(pointStartsFromNewLineExpectedResult, ConstitutionParser.checkLine(pointStartsFromNewLineText));
+        assertEquals(pointStartsFromNewLineExpectedResult, StringUtils.checkLine(pointStartsFromNewLineText));
+    }
+
+    @Test
+    public void deleteKancelariaAndData() throws Exception {
+
+    }
+
+    @Test
+    public void addNewLineBeforePoint() throws Exception {
+
     }
 
 }
