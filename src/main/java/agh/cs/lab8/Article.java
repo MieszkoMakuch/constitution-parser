@@ -9,10 +9,17 @@ public class Article {
     private int no;
     private String stringNo = new String();
     private String content = new String();
+    private boolean lastInSection = false;
 
-    public Article(int no, String stringNo) {
+    public Article(int no, String stringNo, String content, boolean lastInSection) {
         this.stringNo = stringNo;
         this.no = no;
+        this.content = content;
+        this.lastInSection = lastInSection;
+    }
+
+    public boolean isLastInSection() {
+        return lastInSection;
     }
 
     public void setContent (String content){

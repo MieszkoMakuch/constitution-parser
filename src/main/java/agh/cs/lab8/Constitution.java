@@ -43,13 +43,9 @@ public class Constitution {
         return this.articles.get(articleNo - 1);
     }
 
-    public String writeSections(int sectionStartNo, int sectionEndNo) throws IllegalArgumentException{
-        if (sectionStartNo > sectionEndNo) {
-            throw new IllegalArgumentException(
-                    "Zakres: [" + sectionStartNo + "," + sectionEndNo +
-                    "] nie jest prawidłowym zakresem rozdziałów.");
-        }
-        String result = new String();
+    public String writeSections(int sectionStartNo, int sectionEndNo){
+
+        String result = "";
         for (int i = sectionStartNo ; i <= sectionEndNo; i++) {
             result = result + this.getSection(i).toString();
         }
