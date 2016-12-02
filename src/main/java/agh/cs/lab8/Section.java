@@ -9,20 +9,14 @@ public class Section {
     private int no;
     private String stringNo = new String();
     private String title = new String();
-    String content = new String();
 
     private ArrayList<Article> articles = new ArrayList<Article>();
-
 
     public Section(int no, String stringNo, String title) {
         this.stringNo = stringNo;
         this.no = no;
         this.title = title;
 
-    }
-
-    public void setStringNo(String stringNo) {
-        this.stringNo = stringNo;
     }
 
     public void addArticle (Article newArticle){
