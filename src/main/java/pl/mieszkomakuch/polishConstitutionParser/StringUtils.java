@@ -1,4 +1,4 @@
-package agh.cs.lab8;
+package pl.mieszkomakuch.polishConstitutionParser;
 
 /**
  * Set of String utilities used while parsing the text file.

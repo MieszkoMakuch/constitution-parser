@@ -1,4 +1,4 @@
-package agh.cs.lab8;
+package pl.mieszkomakuch.polishConstitutionParser;
 
 /**
  * Parts of the Constitution of Poland.

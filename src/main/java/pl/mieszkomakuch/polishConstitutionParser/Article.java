@@ -1,4 +1,4 @@
-package agh.cs.lab8;
+package pl.mieszkomakuch.polishConstitutionParser;
 
 /**
  * Part of the constitution, article contains its number and content.

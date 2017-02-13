@@ -28,4 +28,4 @@
  * It also retains the structure of the original file e.g. ordered list from article 10 will not
  * be displayed in a single line.
  */
-package agh.cs.lab8;
+package pl.mieszkomakuch.polishConstitutionParser;
