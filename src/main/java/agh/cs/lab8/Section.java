@@ -3,7 +3,7 @@ package agh.cs.lab8;
 import java.util.ArrayList;
 
 /**
- * Created by mieszkomakuch on 01.12.2016.
+ * Part of the constitution, section contains its number, title and list of articles included in it.
  */
 public class Section {
     private int no;
@@ -19,6 +19,11 @@ public class Section {
 
     }
 
+    /**
+     * Adds new article to section.
+     *
+     * @param newArticle article which will be added to section.
+     */
     public void addArticle (Article newArticle){
         articles.add(newArticle);
     }

@@ -1,9 +1,7 @@
 package agh.cs.lab8;
 
-import java.util.ArrayList;
-
 /**
- * Created by mieszkomakuch on 01.12.2016.
+ * Part of the constitution, article contains its number and content.
  */
 public class Article {
     private int no;
@@ -18,12 +16,13 @@ public class Article {
         this.lastInSection = lastInSection;
     }
 
+    /**
+     * Returns <tt>true</tt> if article is last in section.
+     *
+     * @return <tt>true</tt> if article is last in section.
+     */
     public boolean isLastInSection() {
         return lastInSection;
-    }
-
-    public void setContent (String content){
-        this.content = content;
     }
 
     @Override

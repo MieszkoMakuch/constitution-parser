@@ -3,43 +3,55 @@ package agh.cs.lab8;
 import java.util.Scanner;
 
 /**
- * Created by mieszkomakuch on 02.12.2016.
+ * Class responsible for creating Constitution object from text file scanner.
  */
 public class DocumentParser {
-
     private static String sectionName = "Rozdział ";
     private static String articleName = "Art. ";
 
-    public static Constitution parseConstitutionFromTxt (Scanner sc) {
+    private Scanner documentScanner;
+
+    public DocumentParser(Scanner documentScanner) {
+        this.documentScanner = documentScanner;
+    }
+
+    /**
+     * Creates a Constitution object form text file scanner with all sections and articles.
+     *
+     * @return a created Constitution object
+     */
+    public Constitution parseConstitutionFromTxt () {
         Constitution constitution = new Constitution();
 
-        constitution.setBeforeSections(getBeforeSection(sc));
+        constitution.setPreamble(getPreamble());
 
         int sectionNo = 1;
         int articleNo = 1;
-        //Czyta do konca konstytucji
-        while (sc.hasNext()) {
-            constitution = addNextSection(constitution, sc, sectionNo, articleNo);
+        while (this.documentScanner.hasNext()) {
+            constitution = addNextSection(constitution, sectionNo, articleNo);
             sectionNo++;
         }
         return constitution;
     }
 
-    private static Constitution addNextSection (Constitution constitution, Scanner sc, int sectionNo, int articleNo) {
-        Section section = new Section(sectionNo, sectionName + sc.nextLine(), sc.nextLine());
-
-        //znajdz poczatek artykulu (chodzi o "naprawę" pierwszego przypadku
-        //w którym artykuł zacznie się od "Art. 1", a nie "1")
-        while (!patternAppearsInNextLine(sc,articleName)) {
-            sc.nextLine();
+    /**
+     * Adds next section with all its articles to the constitution. Returns modified constitution.
+     *
+     * @param constitution constitution to which next section will be added
+     * @param sectionNo number of section which will be added
+     * @param articleNo number of the first article (from the section) which will be added
+     * @return constitution with added section and all its articles
+     */
+    private Constitution addNextSection (Constitution constitution, int sectionNo, int articleNo) {
+        Section section = new Section(sectionNo, sectionName + this.documentScanner.nextLine(),
+                this.documentScanner.nextLine());
+        while (!patternAppearsInNextLine(articleName)) {
+            this.documentScanner.nextLine();
         }
-
-        //Czyta do konca rozdziału
-        //while (sc.hasNext() && sc.findInLine("Rozdział ") == null) {
         boolean endOfsection = false;
-        while (sc.hasNext() && !endOfsection) {
+        while (this.documentScanner.hasNext() && !endOfsection) {
 
-            Article article = getNextArticle(sc,articleNo);
+            Article article = getNextArticle(articleNo);
             endOfsection = article.isLastInSection();
 
             section.addArticle(article);
@@ -50,33 +62,51 @@ public class DocumentParser {
         return constitution;
     }
 
-    private static Article getNextArticle (Scanner sc, int articleNo) {
+    /**
+     * Creates an Article object with given article number from text file scanner. It is assumed that next line of
+     * the scanner contains article number followed by article content.
+     *
+     * @param articleNo
+     * @return article created from text file scanner.
+     */
+    private Article getNextArticle (int articleNo) {
         String articleContentBuffer = "";
         boolean lastInSection = false;
-        String articleTitle = articleName + sc.nextLine();
-        //Czyta do końca artykułu
-        while (sc.hasNext() && !patternAppearsInNextLine(sc,articleName)) {
+        String articleTitle = articleName + this.documentScanner.nextLine();
+
+        while (this.documentScanner.hasNext() && !patternAppearsInNextLine(articleName)) {
 
             articleContentBuffer = articleContentBuffer +
-                    StringUtils.checkLine(sc.nextLine()+ "\n");
-            if (sc.findInLine(sectionName) != null) {
+                    StringUtils.checkLine(this.documentScanner.nextLine()+ "\n");
+            if (this.documentScanner.findInLine(sectionName) != null) {
                 lastInSection = true;
                 break;
             }
         }
         return new Article(articleNo, articleTitle,
-                StringUtils.chceckArticleContentForUnnecessaryNewLine(articleContentBuffer), lastInSection);
+                StringUtils.checkArticleContentForUnnecessaryNewLine(articleContentBuffer), lastInSection);
     }
 
-    private static String getBeforeSection (Scanner sc) {
-        String beforeSectionBuffer = "";
-        while (sc.hasNext() && !patternAppearsInNextLine(sc,sectionName)) {
-            beforeSectionBuffer = beforeSectionBuffer + StringUtils.checkLine(sc.nextLine() + "\n");
+    /**
+     * Returns the Preamble to the Constitution (everything what is located before first section)
+     *
+     * @return preamble to the constitution (everything what is located before first section)
+     */
+    private String getPreamble () {
+        String preambleBuffer = "";
+        while (this.documentScanner.hasNext() && !patternAppearsInNextLine(sectionName)) {
+            preambleBuffer = preambleBuffer + StringUtils.checkLine(this.documentScanner.nextLine() + "\n");
         }
-        return beforeSectionBuffer;
+        return preambleBuffer;
     }
 
-    private static boolean patternAppearsInNextLine(Scanner sc, String pattern) {
-        return sc.findInLine(pattern) != null;
+    /**
+     * Returns true if given pattern appears in the next line of scanner.
+     *
+     * @param pattern pattern which will be checked
+     * @return true if given pattern appears in the next line of scanner.
+     */
+    private boolean patternAppearsInNextLine(String pattern) {
+        return this.documentScanner.findInLine(pattern) != null;
     }
 }

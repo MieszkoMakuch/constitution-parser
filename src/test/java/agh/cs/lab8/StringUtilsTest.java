@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by mieszkomakuch on 02.12.2016.
+ * Test for string utils class.
  */
 public class StringUtilsTest {
     @Test
@@ -16,7 +16,7 @@ public class StringUtilsTest {
         String chceckArticleExpectedResult =
                 "1. Władza zwierzchnia w Rzeczypospolitej Polskiej należy do Narodu. \n" +
                         "2. Naród sprawuje władzę przez swoich przedstawicieli lub bezpośrednio. \n";
-        assertEquals(chceckArticleExpectedResult, StringUtils.chceckArticleContentForUnnecessaryNewLine(chceckArticleTest));
+        assertEquals(chceckArticleExpectedResult, StringUtils.checkArticleContentForUnnecessaryNewLine(chceckArticleTest));
     }
 
     @Test
@@ -46,16 +46,6 @@ public class StringUtilsTest {
                 "i działania partii politycznych. Partie polityczne zrzeszają na zasadach dobrowolności " +
                 "i równości obywateli polskich w celu wpływania metodami demokratycznymi na kształtowanie ";
         assertEquals(pointStartsFromNewLineExpectedResult, StringUtils.checkLine(pointStartsFromNewLineText));
-    }
-
-    @Test
-    public void deleteKancelariaAndData() throws Exception {
-
-    }
-
-    @Test
-    public void addNewLineBeforePoint() throws Exception {
-
     }
 
 }

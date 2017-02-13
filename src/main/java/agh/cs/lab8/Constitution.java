@@ -3,18 +3,28 @@ package agh.cs.lab8;
 import java.util.ArrayList;
 
 /**
- * Created by mieszkomakuch on 01.12.2016.
+ * Class containing preamble, sections and articles, responsible for writing article/section or range of articles/sections.
  */
 public class Constitution {
-    private String beforeSections;
+
+    /**
+     * Preamble of the constitution (part of the constitution located before sections).
+     */
+    private String preamble;
+    /**
+     * List of all sections included in the constitution.
+     */
     private ArrayList<Section> sections = new ArrayList<Section>();
+    /**
+     * List of all articles included in the constitution.
+     */
     private ArrayList<Article> articles = new ArrayList<Article>();
 
     public Constitution() {
     }
 
-    public void setBeforeSections(String beforeSections) {
-        this.beforeSections = beforeSections;
+    public void setPreamble(String preamble) {
+        this.preamble = preamble;
     }
 
     public void addSection(Section newSection) {
@@ -23,10 +33,6 @@ public class Constitution {
 
     public void addArticle(Article newArticle) {
         articles.add(newArticle);
-    }
-
-    public String getBeforeSections() {
-        return beforeSections;
     }
 
     private Section getSection(int sectionNo) throws IllegalArgumentException{
@@ -52,13 +58,8 @@ public class Constitution {
         return result;
     }
 
-    public String writeArticles(int articleStartNo, int articleEndNo) throws IllegalArgumentException{
-        if (articleStartNo > articleEndNo) {
-            throw new IllegalArgumentException(
-                    "Zakres: [" + articleStartNo + "," + articleEndNo +
-                            "] nie jest prawidłowym zakresem artykółów.");
-        }
-        String result = new String();
+    public String writeArticles(int articleStartNo, int articleEndNo){
+        String result = "";
         for (int i = articleStartNo; i <= articleEndNo; i++) {
             result = result + this.getArticle(i).toString();
         }
@@ -67,7 +68,7 @@ public class Constitution {
 
     @Override
     public String toString() {
-        String result = beforeSections + "\n" + "\n";
+        String result = preamble + "\n" + "\n";
         for(Section section : sections) {
             result += section.toString();
         }
