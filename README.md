@@ -1,17 +1,15 @@
-# Laboratorium nr 8 
+## Parser of the Constitution of Poland
 
-Zamiana tekstu na formę obiektową.
+Package contains set of classes to parse the Constitution of Poland from a text file into a objective form.
 
-1. Zapoznaj się z plikiem konstytucja.txt dołączonym do niniejszego repozytorium.
-2. Opracuj zestaw klas oraz zimplementuj odpowiednie algorytmy tak by opracowany program:
-  * wczytywał plik konstytucja.txt,
-  * zamieniał postać tekstową pliku na formę obiektową,
-  * umożliwiał wyświetlanie treści artykułu o określonym numerze lub zakresu artykułów,
-  * umożliwiał wyświetlanie treści rozdziału o określonym numerze (w tym treści wszystkich artykułów znajdujących się w
-    tym rozdziale),
-  * usuwał z końca linii znaki przeniesienia do nowej liniii (-) i łączył słowa w całość,
-  * usuwał z tekstu zbęde elementy takie jak linie "Kancelaria Sejmu" oraz data,
-  * zachowywał oryginalna strukturę tekstu, tzn. elementy takie jak punkty (patrz art. 10) nie powinny być wyświetlane w
-    jednej linii.
-3. Program powinien akceptować argumenty: lokalizację pliku konstytucja.txt oraz numer lub zakres artykułów, bądź numer
-   rozdziału.
+It enables to display:
+- The content of the article with the specified number
+- The content of the section with the specified number (content of the section contains: section number, section title and content of all articles included in this section)
+- Range of articles
+- Range of sections
+
+While parsing ConstitutionSystem deletes any unnecessary elements such as:
+- hyphens "-" by joining broken words at line breaks
+- duplicated lines "Kancelaria Sejmu" and date
+
+It also retains the structure of the original file e.g. ordered list from article 10 will not be displayed in a single line.
