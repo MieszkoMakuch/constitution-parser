@@ -27,7 +27,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return  stringNo + "\n" +
+        return stringNo + "\n" +
                 content + "\n";
     }
 }

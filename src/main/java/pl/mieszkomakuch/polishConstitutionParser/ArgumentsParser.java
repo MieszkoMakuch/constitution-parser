@@ -27,7 +27,7 @@ public class ArgumentsParser {
      * @param args arguments provided by a user.
      * @throws IllegalArgumentException if amount of arguments is invalid.
      */
-    private void checkAmountOfArguments (String[] args) throws IllegalArgumentException {
+    private void checkAmountOfArguments(String[] args) throws IllegalArgumentException {
         if (!(args.length == 3 || args.length == 4)) {
             throw new IllegalArgumentException("Zła ilość argumentów, podaj 3 lub 4 argumenty");
         }
@@ -39,7 +39,7 @@ public class ArgumentsParser {
      * @return part of the document from PartsOfConstitution enum chosen by a user.
      * @throws IllegalArgumentException if chosen part is invalid.
      */
-    public PartsOfConstitution partOfDocumentToWrite () throws IllegalArgumentException {
+    public PartsOfConstitution partOfDocumentToWrite() throws IllegalArgumentException {
         if (this.args[1].equalsIgnoreCase("r") || args[1].equalsIgnoreCase("rozdział") ||
                 args[1].equalsIgnoreCase("s") || args[1].equalsIgnoreCase("section")) {
             return PartsOfConstitution.SECTION;
@@ -54,11 +54,11 @@ public class ArgumentsParser {
      * @return array containing start and end of the range.
      * @throws IllegalArgumentException if chosen range is invalid.
      */
-    public int[] getRange () {
+    public int[] getRange() {
         int rangeStart;
         int rangeEnd = rangeStart = Integer.parseInt(args[2]);
 
-        if (args.length > 3){
+        if (args.length > 3) {
             rangeEnd = Integer.parseInt(args[3]);
         }
         if (rangeStart > rangeEnd) {
@@ -66,7 +66,7 @@ public class ArgumentsParser {
                     "Zakres: [" + rangeStart + "," + rangeEnd +
                             "] nie jest prawidłowym zakresem rozdziałów.");
         }
-        return new int[] {rangeStart, rangeEnd};
+        return new int[]{rangeStart, rangeEnd};
     }
 
     /**
@@ -75,7 +75,7 @@ public class ArgumentsParser {
      * @return Scanner from text file from given file path.
      * @throws FileNotFoundException if file from given file path does not exitst.
      */
-    public Scanner getScanner () throws FileNotFoundException {
+    public Scanner getScanner() throws FileNotFoundException {
         return new Scanner(new File(args[0]));
     }
 

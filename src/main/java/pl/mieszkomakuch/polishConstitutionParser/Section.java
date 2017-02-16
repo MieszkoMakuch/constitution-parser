@@ -24,15 +24,15 @@ public class Section {
      *
      * @param newArticle article which will be added to section.
      */
-    public void addArticle (Article newArticle){
+    public void addArticle(Article newArticle) {
         articles.add(newArticle);
     }
 
     @Override
     public String toString() {
         String result = stringNo + "\n" +
-                        title + "\n";
-        for(Article article : articles) {
+                title + "\n";
+        for (Article article : articles) {
             result += article.toString();
         }
         return result + "\n";

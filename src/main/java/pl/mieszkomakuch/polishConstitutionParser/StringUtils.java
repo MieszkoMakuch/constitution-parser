@@ -12,8 +12,8 @@ public class StringUtils {
      * @param articleContent which will be checked.
      * @return article content without unnecessary new line character before first point of ordered list.
      */
-    public static String checkArticleContentForUnnecessaryNewLine (String articleContent) {
-        if (articleContent.startsWith("\n1. ")){
+    public static String checkArticleContentForUnnecessaryNewLine(String articleContent) {
+        if (articleContent.startsWith("\n1. ")) {
             return articleContent.replaceAll("\n1. ", "1. ");
         }
         return articleContent;
@@ -41,9 +41,9 @@ public class StringUtils {
      * @param line which may contain "Kancelaria Sejmu" or date.
      * @return line without "Kancelaria Sejmu" and date.
      */
-    public static String deleteKancelariaAndData (String line) {
+    public static String deleteKancelariaAndData(String line) {
         String line2 = line.replaceAll("©Kancelaria Sejmu\n", "");
-        return line2.replaceAll("[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])","");
+        return line2.replaceAll("[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])", "");
     }
 
     /**
@@ -52,7 +52,7 @@ public class StringUtils {
      * @param line which may contain point of ordered list.
      * @return line with new line character if the line contains point of ordered list.
      */
-    public static String addNewLineBeforePoint (String line) {
+    public static String addNewLineBeforePoint(String line) {
         if (line.matches("([0-9]*[0-9][.]).*")) {
             line = "\n" + line;
         }

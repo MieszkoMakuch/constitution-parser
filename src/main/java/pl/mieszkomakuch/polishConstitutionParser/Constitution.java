@@ -52,7 +52,7 @@ public class Constitution {
      * @return section with the specified number.
      * @throws IllegalArgumentException if section with the specified number is not included in the constitution.
      */
-    private Section getSection(int sectionNo) throws IllegalArgumentException{
+    private Section getSection(int sectionNo) throws IllegalArgumentException {
         if (sectionNo > sections.size() || sectionNo < 1) {
             throw new IllegalArgumentException("Nie ma " + sectionNo + ". rozdziału w konstytucji");
         }
@@ -66,7 +66,7 @@ public class Constitution {
      * @return article with the specified number.
      * @throws IllegalArgumentException if article with the specified number is not included in the constitution.
      */
-    private Article getArticle(int articleNo) throws IllegalArgumentException{
+    private Article getArticle(int articleNo) throws IllegalArgumentException {
         if (articleNo > articles.size() || articleNo < 1) {
             throw new IllegalArgumentException("Nie ma " + articleNo + ". artykułu w konstytucji");
         }
@@ -77,13 +77,13 @@ public class Constitution {
      * Returns string containing all sections (with their number, title and content) from the given range.
      *
      * @param sectionStartNo first section in the range.
-     * @param sectionEndNo last section in the range.
+     * @param sectionEndNo   last section in the range.
      * @return string containing all sections (with their number, title and content) from the given range.
      */
-    public String writeSections(int sectionStartNo, int sectionEndNo){
+    public String writeSections(int sectionStartNo, int sectionEndNo) {
 
         String result = "";
-        for (int i = sectionStartNo ; i <= sectionEndNo; i++) {
+        for (int i = sectionStartNo; i <= sectionEndNo; i++) {
             result = result + this.getSection(i).toString();
         }
         return result;
@@ -93,10 +93,10 @@ public class Constitution {
      * Returns string containing all articles (with their number and content) from the given range.
      *
      * @param articleStartNo first article in the range.
-     * @param articleEndNo last article in the range
+     * @param articleEndNo   last article in the range
      * @return string containing all articles (with their number and content) from the given range.
      */
-    public String writeArticles(int articleStartNo, int articleEndNo){
+    public String writeArticles(int articleStartNo, int articleEndNo) {
         String result = "";
         for (int i = articleStartNo; i <= articleEndNo; i++) {
             result = result + this.getArticle(i).toString();
@@ -107,7 +107,7 @@ public class Constitution {
     @Override
     public String toString() {
         String result = preamble + "\n" + "\n";
-        for(Section section : sections) {
+        for (Section section : sections) {
             result += section.toString();
         }
         return result + "\n";

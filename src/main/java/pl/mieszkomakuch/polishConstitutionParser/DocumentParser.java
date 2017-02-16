@@ -20,7 +20,7 @@ public class DocumentParser {
      *
      * @return a created Constitution object
      */
-    public Constitution parseConstitutionFromTxt () {
+    public Constitution parseConstitutionFromTxt() {
         Constitution constitution = new Constitution();
 
         constitution.setPreamble(getPreamble());
@@ -38,11 +38,11 @@ public class DocumentParser {
      * Adds next section with all its articles to the constitution. Returns modified constitution.
      *
      * @param constitution constitution to which next section will be added
-     * @param sectionNo number of section which will be added
-     * @param articleNo number of the first article (from the section) which will be added
+     * @param sectionNo    number of section which will be added
+     * @param articleNo    number of the first article (from the section) which will be added
      * @return constitution with added section and all its articles
      */
-    private Constitution addNextSection (Constitution constitution, int sectionNo, int articleNo) {
+    private Constitution addNextSection(Constitution constitution, int sectionNo, int articleNo) {
         Section section = new Section(sectionNo, sectionName + this.documentScanner.nextLine(),
                 this.documentScanner.nextLine());
         while (!patternAppearsInNextLine(articleName)) {
@@ -69,7 +69,7 @@ public class DocumentParser {
      * @param articleNo
      * @return article created from text file scanner.
      */
-    private Article getNextArticle (int articleNo) {
+    private Article getNextArticle(int articleNo) {
         String articleContentBuffer = "";
         boolean lastInSection = false;
         String articleTitle = articleName + this.documentScanner.nextLine();
@@ -77,7 +77,7 @@ public class DocumentParser {
         while (this.documentScanner.hasNext() && !patternAppearsInNextLine(articleName)) {
 
             articleContentBuffer = articleContentBuffer +
-                    StringUtils.checkLine(this.documentScanner.nextLine()+ "\n");
+                    StringUtils.checkLine(this.documentScanner.nextLine() + "\n");
             if (this.documentScanner.findInLine(sectionName) != null) {
                 lastInSection = true;
                 break;
@@ -92,7 +92,7 @@ public class DocumentParser {
      *
      * @return preamble to the constitution (everything what is located before first section)
      */
-    private String getPreamble () {
+    private String getPreamble() {
         String preambleBuffer = "";
         while (this.documentScanner.hasNext() && !patternAppearsInNextLine(sectionName)) {
             preambleBuffer = preambleBuffer + StringUtils.checkLine(this.documentScanner.nextLine() + "\n");

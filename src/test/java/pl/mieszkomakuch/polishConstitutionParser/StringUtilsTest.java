@@ -2,7 +2,7 @@ package pl.mieszkomakuch.polishConstitutionParser;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test for string utils class.
@@ -21,7 +21,7 @@ public class StringUtilsTest {
 
     @Test
     public void checkLine() throws Exception {
-        String linkingWordsTest =   "Rzeczpospolita Polska zapewnia wolność tworzenia i działania partii politycz-\n" +
+        String linkingWordsTest = "Rzeczpospolita Polska zapewnia wolność tworzenia i działania partii politycz-\n" +
                 "nych. Partie polityczne zrzeszają na zasadach dobrowolności i równości obywa-\n" +
                 "teli polskich w celu wpływania metodami demokratycznymi na kształtowanie\n" +
                 "polityki państwa.\n";
@@ -32,10 +32,10 @@ public class StringUtilsTest {
         assertEquals(linkingWordsExpectedResult, StringUtils.checkLine(linkingWordsTest));
 
 
-        String deleteKancelariaTest =   "konywania zadań publicznych określa ustawa.\n" +
+        String deleteKancelariaTest = "konywania zadań publicznych określa ustawa.\n" +
                 "©Kancelaria Sejmu\n" +
                 "2009-11-16";
-        String deleteKancelariaExpectedResult =     "konywania zadań publicznych określa ustawa. ";
+        String deleteKancelariaExpectedResult = "konywania zadań publicznych określa ustawa. ";
         assertEquals(deleteKancelariaExpectedResult, StringUtils.checkLine(deleteKancelariaTest));
 
         String pointStartsFromNewLineText = "1. Rzeczpospolita Polska zapewnia wolność tworzenia i działania partii politycz-\n" +

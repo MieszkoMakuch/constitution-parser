@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
  * Parses the Constitution of Poland from a text file into a objective form and displays the content of article/section
  * with the specified number or content of given range of articles/sections.
  */
-
-
 public class ConstitutionSystem {
 
     /**
@@ -28,11 +26,11 @@ public class ConstitutionSystem {
             int startNo = argumentsParser.getRange()[0];
             int endNo = argumentsParser.getRange()[1];
 
-            if(argumentsParser.partOfDocumentToWrite().equals(PartsOfConstitution.ARTICLE)){
-                System.out.println(constitution.writeArticles(startNo,endNo));
+            if (argumentsParser.partOfDocumentToWrite().equals(PartsOfConstitution.ARTICLE)) {
+                System.out.println(constitution.writeArticles(startNo, endNo));
             }
-            if(argumentsParser.partOfDocumentToWrite().equals(PartsOfConstitution.SECTION)){
-                System.out.println(constitution.writeSections(startNo,endNo));
+            if (argumentsParser.partOfDocumentToWrite().equals(PartsOfConstitution.SECTION)) {
+                System.out.println(constitution.writeSections(startNo, endNo));
             }
 
         } catch (IllegalArgumentException | FileNotFoundException ex) {
