@@ -13,3 +13,5 @@ While parsing ConstitutionSystem deletes any unnecessary elements such as:
 - duplicated lines "Kancelaria Sejmu" and date
 
 It also retains the structure of the original file e.g. ordered list from article 10 will not be displayed in a single line.
+
+**Note that** because this is a parser of the Constitution of Poland some prompts may be written in Polish.
